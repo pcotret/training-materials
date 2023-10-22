@@ -27,33 +27,54 @@
   \end{center}
 \end{frame}
 
-\begin{frame}{Architecture tuple and toolchain prefix}
+\begin{frame}
+  \frametitle{Machines in build procedures}
   \begin{itemize}
-  \item Many UNIX/Linux build mechanisms rely on {\em architecture
-      tuple} names to identify machines.
-  \item Examples: \code{arm-linux-gnueabihf},
-    \code{mips64el-linux-gnu}, \code{arm-vendor-none-eabihf}
-  \item These tuples are 3 or 4 parts:
-    \begin{enumerate}
-    \item The architecture name: \code{arm}, \code{riscv},
-      \code{mips64el}, etc.
-    \item Optionally, a vendor name, which is a free-form string
-    \item An operating system name, or \code{none} when not targeting
-      an operating system
-    \item The ABI/C library (see later)
-    \end{enumerate}
-  \item This tuple is used to:
+  \item Three machines must be distinguished when discussing toolchain creation
     \begin{itemize}
-    \item configure/build software for a given platform
-    \item as a prefix of cross-compilation tools, to differentiate
-      them from the native toolchain
-      \begin{itemize}
-      \item \code{gcc} $\rightarrow$ native compiler
-      \item \code{arm-linux-gnueabihf-gcc} $\rightarrow$ cross-compiler
-      \end{itemize}
+    \item The {\bf build} machine, where the toolchain is built.
+    \item The {\bf host} machine, where the toolchain will be executed.
+    \item The {\bf target} machine, where the binaries created by the
+      toolchain are executed.
     \end{itemize}
+  \item Four common build types are possible for toolchains
   \end{itemize}
 \end{frame}
+
+\begin{frame}
+  \frametitle{Different toolchain build procedures}
+  \begin{center}
+    \includegraphics[height=0.8\textheight]{slides/sysdev-toolchains-definition/toolchain-build-types.pdf}
+  \end{center}
+\end{frame}
+
+%\begin{frame}{Architecture tuple and toolchain prefix}
+%  \begin{itemize}
+%  \item Many UNIX/Linux build mechanisms rely on {\em architecture
+%      tuple} names to identify machines.
+%  \item Examples: \code{arm-linux-gnueabihf},
+%    \code{mips64el-linux-gnu}, \code{arm-vendor-none-eabihf}
+%  \item These tuples are 3 or 4 parts:
+%    \begin{enumerate}
+%    \item The architecture name: \code{arm}, \code{riscv},
+%      \code{mips64el}, etc.
+%    \item Optionally, a vendor name, which is a free-form string
+%    \item An operating system name, or \code{none} when not targeting
+%      an operating system
+%    \item The ABI/C library (see later)
+%    \end{enumerate}
+%  \item This tuple is used to:
+%    \begin{itemize}
+%    \item configure/build software for a given platform
+%    \item as a prefix of cross-compilation tools, to differentiate
+%      them from the native toolchain
+%      \begin{itemize}
+%      \item \code{gcc} $\rightarrow$ native compiler
+%      \item \code{arm-linux-gnueabihf-gcc} $\rightarrow$ cross-compiler
+%      \end{itemize}
+%    \end{itemize}
+%  \end{itemize}
+%\end{frame}
 
 \begin{frame}
   \frametitle{Components of gcc toolchains}
@@ -271,6 +292,36 @@ struct stat {
   \end{columns}
 \end{frame}
 
+\begin{frame}{glibc vs uclibc-ng vs musl - small static executables}
+  Let's compile and strip a \code{hello.c} program {\bf statically} and
+compare the size
+  \begin{itemize}
+    \item With gcc 6.3, armel, musl 1.1.16:\\
+          {\bf 7300} bytes
+    \item With gcc 6.3, armel, uclibc-ng 1.0.22 :\\
+          {\bf 67204} bytes.
+    \item With gcc 6.2, armel, glibc:\\
+          {\bf 492792} bytes
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{glibc vs uclibc vs musl (static)}
+  Let's compile and strip BusyBox 1.26.2 {\bf statically} and compare the size
+  \begin{itemize}
+    \item With gcc 6.3, armel, musl 1.1.16:\\
+          {\bf 183348} bytes
+    \item With gcc 6.3, armel, uclibc-ng 1.0.22 :\\
+          {\bf 210620} bytes.\\
+    \item With gcc 6.2, armel, glibc:\\
+          {\bf 755088} bytes
+  \end{itemize}
+  Notes:
+  \begin{itemize}
+    \item BusyBox is automatically compiled with \code{-Os} and stripped.
+    \item Compiling with shared libraries will mostly eliminate size differences
+  \end{itemize}
+\end{frame}
+
 \begin{frame}
   \frametitle{Other smaller C libraries}
   \begin{itemize}
@@ -314,6 +365,27 @@ struct stat {
   \end{itemize}
 \end{frame}
 
+\subsection{Toolchain Options}
+\begin{frame}
+  \frametitle{ABI}
+  \begin{itemize}
+  \item When building a toolchain, the ABI used to generate binaries
+    needs to be defined
+  \item ABI, for {\em Application Binary Interface}, defines the
+    calling conventions (how function arguments are passed, how the
+    return value is passed, how system calls are made) and the
+    organization of structures (alignment, etc.)
+  \item All binaries in a system are typically compiled with the same ABI,
+    and the kernel must understand this ABI.
+  \item On ARM, two main ABIs: {\em OABI} and {\em EABI}
+    \begin{itemize}
+    \item Nowadays everybody uses {\em EABI}
+    \end{itemize}
+  \item On MIPS, several ABIs: {\em o32, o64, n32, n64}
+  \item {\fontsize{10}{15} \url{https://en.wikipedia.org/wiki/Application_Binary_Interface}}
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Linux vs. bare-metal toolchain}
   \begin{itemize}
   \item A {\bf Linux toolchain}
@@ -340,24 +412,24 @@ struct stat {
   \end{itemize}
 \end{frame}
 
-\begin{frame}{An alternate compiler suite: LLVM}
-  \begin{itemize}
-  \item Most Embedded Linux projects use toolchains based on GNU
-    project: GCC compiler, binutils, GDB debugger
-  \item The LLVM project has been developing an alternative compiler
-    suite:
-    \begin{itemize}
-    \item Clang, C/C++ compiler, \url{https://clang.llvm.org/}
-    \item LLDB, debugger, \url{https://lldb.llvm.org/}
-    \item LLD, linker, \url{https://lld.llvm.org/}
-    \item and more, see \url{https://llvm.org/}
-    \end{itemize}
-  \item While they are used by several high-profile projects, they are
-    not yet in widespread use in most Embedded Linux projects.
-  \item Initially had better code optimization and diagnostics than
-    GCC, but thanks to having competition, GCC has improved
-    significantly in this area.
-  \item Available under MIT/BSD licenses
-  \item \url{https://en.wikipedia.org/wiki/LLVM}
-  \end{itemize}
-\end{frame}
+%\begin{frame}{An alternate compiler suite: LLVM}
+%  \begin{itemize}
+%  \item Most Embedded Linux projects use toolchains based on GNU
+%    project: GCC compiler, binutils, GDB debugger
+%  \item The LLVM project has been developing an alternative compiler
+%    suite:
+%    \begin{itemize}
+%    \item Clang, C/C++ compiler, \url{https://clang.llvm.org/}
+%    \item LLDB, debugger, \url{https://lldb.llvm.org/}
+%    \item LLD, linker, \url{https://lld.llvm.org/}
+%    \item and more, see \url{https://llvm.org/}
+%    \end{itemize}
+%  \item While they are used by several high-profile projects, they are
+%    not yet in widespread use in most Embedded Linux projects.
+%  \item Initially had better code optimization and diagnostics than
+%    GCC, but thanks to having competition, GCC has improved
+%    significantly in this area.
+%  \item Available under MIT/BSD licenses
+%  \item \url{https://en.wikipedia.org/wiki/LLVM}
+%  \end{itemize}
+%\end{frame}

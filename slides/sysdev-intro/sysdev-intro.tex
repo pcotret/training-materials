@@ -1,53 +1,53 @@
 \section{Introduction to Embedded Linux}
 
-\begin{frame}
-  \frametitle{Birth of Free Software}
-  \begin{columns}
-    \column{0.75\textwidth}
-      \begin{itemize}
-      \item 1983, Richard Stallman, {\bf GNU project} and the {\bf free
-          software} concept.  Beginning of the development of {\em gcc},
-        {\em gdb}, {\em glibc} and other important tools
-      \item 1991, Linus Torvalds, {\bf Linux kernel project}, a UNIX-like
-        operating system kernel. Together with GNU software and many other
-        open-source components: a completely free operating system,
-        GNU/Linux
-      \item ~1995, Linux is more and more popular on server systems
-      \item ~2000, Linux is more and more popular on {\bf embedded
-          systems}
-      \item ~2008, Linux is more and more popular on mobile devices and phones
-      \item ~2012, Linux is available on cheap, extensible hardware:
-            Raspberry Pi, BeagleBone Black
-      \end{itemize}
-    \column{0.25\textwidth}
-      \includegraphics[width=\textwidth]{slides/sysdev-intro/richard-stallman.jpg}
-      \scriptsize
-      Richard Stallman in 2019\\
-      \tiny
-      Image credits (Wikipedia):\\
-      \url{https://frama.link/qC73jkk4}
-    \end{columns}
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{Free software?}
-  \begin{itemize}
-  \item A program is considered {\bf free} when its license offers to
-    all its users the following {\bf four} freedoms
-    \begin{itemize}
-    \item Freedom to run the software for any purpose
-    \item Freedom to study the software and to change it
-    \item Freedom to redistribute copies
-    \item Freedom to distribute copies of modified versions
-    \end{itemize}
-  \item These freedoms are granted for both commercial and
-    non-commercial use
-  \item They imply the availability of source code, software can be
-    modified and distributed to customers
-  \item {\bf Good match for embedded systems!}
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+%  \frametitle{Birth of Free Software}
+%  \begin{columns}
+%    \column{0.75\textwidth}
+%      \begin{itemize}
+%      \item 1983, Richard Stallman, {\bf GNU project} and the {\bf free
+%          software} concept.  Beginning of the development of {\em gcc},
+%        {\em gdb}, {\em glibc} and other important tools
+%      \item 1991, Linus Torvalds, {\bf Linux kernel project}, a UNIX-like
+%        operating system kernel. Together with GNU software and many other
+%        open-source components: a completely free operating system,
+%        GNU/Linux
+%      \item ~1995, Linux is more and more popular on server systems
+%      \item ~2000, Linux is more and more popular on {\bf embedded
+%          systems}
+%      \item ~2008, Linux is more and more popular on mobile devices and phones
+%      \item ~2012, Linux is available on cheap, extensible hardware:
+%            Raspberry Pi, BeagleBone Black
+%      \end{itemize}
+%    \column{0.25\textwidth}
+%      \includegraphics[width=\textwidth]{slides/sysdev-intro/richard-stallman.jpg}
+%      \scriptsize
+%      Richard Stallman in 2019\\
+%      \tiny
+%      Image credits (Wikipedia):\\
+%      \url{https://frama.link/qC73jkk4}
+%    \end{columns}
+%
+%\end{frame}
+%
+%\begin{frame}
+%  \frametitle{Free software?}
+%  \begin{itemize}
+%  \item A program is considered {\bf free} when its license offers to
+%    all its users the following {\bf four} freedoms
+%    \begin{itemize}
+%    \item Freedom to run the software for any purpose
+%    \item Freedom to study the software and to change it
+%    \item Freedom to redistribute copies
+%    \item Freedom to distribute copies of modified versions
+%    \end{itemize}
+%  \item These freedoms are granted for both commercial and
+%    non-commercial use
+%  \item They imply the availability of source code, software can be
+%    modified and distributed to customers
+%  \item {\bf Good match for embedded systems!}
+%  \end{itemize}
+%\end{frame}
 
 \begin{frame}{What is embedded Linux?}
   \huge
@@ -92,68 +92,68 @@
   \end{columns}
 \end{frame}
 
-\subsection[Systems running Linux]{A few examples of embedded systems
-  running Linux}
-
-\begin{frame}
-  \frametitle{Wireless routers}
-  \begin{center}
-    \includegraphics[height=0.8\textheight]{slides/sysdev-intro/linksys-wireless-router.jpg}
-  \end{center}
-  \tiny
-  Image credits: Evan Amos (\url{https://bit.ly/2JzDIkv})
-\end{frame}
-
-\begin{frame}
-\frametitle{Video systems}
-  \begin{center}
-    \includegraphics[height=0.8\textheight]{slides/sysdev-intro/chromecast-2015.jpg}
-  \end{center}
-  \tiny Image credits: \url{https://bit.ly/2HbwyVq}
-\end{frame}
-
-\begin{frame}
-\frametitle{Bike computers}
-  \begin{center}
-    \includegraphics[height=0.8\textheight]{slides/sysdev-intro/bike-computer.jpg}
-  \end{center}
-  \tiny
-  Product from BLOKS (\url{http://bloks.de}).
-  Permission to use this picture only in this document, in updates and
-  in translations.
-\end{frame}
-
-\begin{frame}
-\frametitle{Robots}
-  \begin{center}
-    \includegraphics[height=0.75\textheight]{slides/sysdev-intro/beagle-robot.jpg}
-  \end{center}
-  eduMIP robot (\url{https://www.ucsdrobotics.org/edumip})
-\end{frame}
-
-\begin{frame}
-\frametitle{In space}
-  \begin{columns}
-  \column{0.5\textwidth}
-  \scriptsize
-  SpaceX Starlink satellites\\
-  \includegraphics[height=0.3\textheight]{slides/sysdev-intro/starlink.jpg}\\
-  SpaceX Falcon 9 and Falcon Heavy rockets\\
-  \includegraphics[height=0.3\textheight]{slides/sysdev-intro/falcon-heavy.jpg}\\
-  \vspace{0.3cm}
-  \tiny Image credits: Wikipedia
-  \column{0.5\textwidth}
-  \scriptsize
-  Mars Ingenuity Helicopter\\
-  \includegraphics[height=0.3\textheight]{slides/sysdev-intro/mars-helicopter.jpg}\\
-  \includegraphics[height=0.3\textheight]{slides/sysdev-intro/mars-helicopter-video.jpg}\\
-  \vspace{0.5cm}
-  \tiny
-  See the {\em Linux on Mars: How the Perseverance Rover and Ingenuity Helicopter Leveraged
-  Linux to Accomplish their Mission} presentation from Tim Canham (JPL, NASA):
-  \url{https://youtu.be/0_GfMcBmbCg?t=111}
-  \end{columns}
-\end{frame}
+%\subsection[Systems running Linux]{A few examples of embedded systems
+%  running Linux}
+%
+%\begin{frame}
+%  \frametitle{Wireless routers}
+%  \begin{center}
+%    \includegraphics[height=0.8\textheight]{slides/sysdev-intro/linksys-wireless-router.jpg}
+%  \end{center}
+%  \tiny
+%  Image credits: Evan Amos (\url{https://bit.ly/2JzDIkv})
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Video systems}
+%  \begin{center}
+%    \includegraphics[height=0.8\textheight]{slides/sysdev-intro/chromecast-2015.jpg}
+%  \end{center}
+%  \tiny Image credits: \url{https://bit.ly/2HbwyVq}
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Bike computers}
+%  \begin{center}
+%    \includegraphics[height=0.8\textheight]{slides/sysdev-intro/bike-computer.jpg}
+%  \end{center}
+%  \tiny
+%  Product from BLOKS (\url{http://bloks.de}).
+%  Permission to use this picture only in this document, in updates and
+%  in translations.
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Robots}
+%  \begin{center}
+%    \includegraphics[height=0.75\textheight]{slides/sysdev-intro/beagle-robot.jpg}
+%  \end{center}
+%  eduMIP robot (\url{https://www.ucsdrobotics.org/edumip})
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{In space}
+%  \begin{columns}
+%  \column{0.5\textwidth}
+%  \scriptsize
+%  SpaceX Starlink satellites\\
+%  \includegraphics[height=0.3\textheight]{slides/sysdev-intro/starlink.jpg}\\
+%  SpaceX Falcon 9 and Falcon Heavy rockets\\
+%  \includegraphics[height=0.3\textheight]{slides/sysdev-intro/falcon-heavy.jpg}\\
+%  \vspace{0.3cm}
+%  \tiny Image credits: Wikipedia
+%  \column{0.5\textwidth}
+%  \scriptsize
+%  Mars Ingenuity Helicopter\\
+%  \includegraphics[height=0.3\textheight]{slides/sysdev-intro/mars-helicopter.jpg}\\
+%  \includegraphics[height=0.3\textheight]{slides/sysdev-intro/mars-helicopter-video.jpg}\\
+%  \vspace{0.5cm}
+%  \tiny
+%  See the {\em Linux on Mars: How the Perseverance Rover and Ingenuity Helicopter Leveraged
+%  Linux to Accomplish their Mission} presentation from Tim Canham (JPL, NASA):
+%  \url{https://youtu.be/0_GfMcBmbCg?t=111}
+%  \end{columns}
+%\end{frame}
 
 \subsection{Embedded hardware for Linux systems}
 
@@ -205,86 +205,86 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Communication}
-  \begin{itemize}
-  \item The Linux kernel has support for many common communication
-    buses
-    \begin{itemize}
-    \item I2C
-    \item SPI
-    \item 1-wire
-    \item SDIO
-    \item PCI
-    \item USB
-    \item CAN (mainly used in automotive)
-    \end{itemize}
-  \item And also extensive networking support
-    \begin{itemize}
-    \item Ethernet, Wifi, Bluetooth, CAN, etc.
-    \item IPv4, IPv6, TCP, UDP, SCTP, DCCP, etc.
-    \item Firewalling, advanced routing, multicast
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Types of hardware platforms (1)}
-  \begin{columns}
-  \column{0.75\textwidth}
-  \begin{itemize}
-  \item {\bf Evaluation platforms} from the SoC vendor. Usually
-    expensive, but many peripherals are built-in. Generally unsuitable
-    for real products, but best for product development.
-  \item {\bf System on Module} (SoM) or {\bf Component on Module}, a small
-    board with only CPU/RAM/flash and a few other core components, with
-    connectors to access all other peripherals. Can be used to build end
-    products for small to medium quantities.
-  \end{itemize}
-  \column{0.25\textwidth}
-    \includegraphics[width=\textwidth]{slides/sysdev-intro/stm32mp157c-ev1.png}
-    \scriptsize
-    STM32MP157C-EV1 evaluation board\\
-    \tiny
-    Image credits (st.com):\\
-    \url{https://frama.link/NySnaxuV}\\
-    \vspace{0.5cm}
-    \includegraphics[width=\textwidth]{slides/sysdev-intro/pocketbeagle.png}
-    \scriptsize
-    PocketBeagle\\
-    \tiny
-    Image credits (Beagleboard.org):\\
-    \url{https://beagleboard.org/pocket}
-  \end{columns}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Types of hardware platforms (2)}
-  \begin{columns}
-  \column{0.75\textwidth}
-  \begin{itemize}
-  \item {\bf Community development platforms}, to make a
-    particular SoC popular and easily available. These are
-    ready-to-use and low cost, but usually have fewer peripherals than
-    evaluation platforms. To some extent, can also be used for real
-    products.
-  \item {\bf Custom platform}. Schematics for evaluation boards or
-    development platforms are more and more commonly freely available,
-    making it easier to develop custom platforms.
-  \end{itemize}
-  \column{0.25\textwidth}
-    \includegraphics[height=0.3\textheight]{../slides/beagleboneblack-board/beagleboneblack.png}
-    \scriptsize
-    Beaglebone Black Wireless board\\
-    \vspace{0.5cm}
-    \includegraphics[height=0.3\textheight]{slides/sysdev-intro/teres-pcb1-a64.jpg}
-    \scriptsize
-    Olimex Open hardware ARM laptop main board\\
-    \tiny
-    Image credits (Olimex):\\
-    \url{https://www.olimex.com/Products/DIY-Laptop/}
-  \end{columns}
-\end{frame}
+%\begin{frame}
+%  \frametitle{Communication}
+%  \begin{itemize}
+%  \item The Linux kernel has support for many common communication
+%    buses
+%    \begin{itemize}
+%    \item I2C
+%    \item SPI
+%    \item 1-wire
+%    \item SDIO
+%    \item PCI
+%    \item USB
+%    \item CAN (mainly used in automotive)
+%    \end{itemize}
+%  \item And also extensive networking support
+%    \begin{itemize}
+%    \item Ethernet, Wifi, Bluetooth, CAN, etc.
+%    \item IPv4, IPv6, TCP, UDP, SCTP, DCCP, etc.
+%    \item Firewalling, advanced routing, multicast
+%    \end{itemize}
+%  \end{itemize}
+%\end{frame}
+%
+%\begin{frame}
+%  \frametitle{Types of hardware platforms (1)}
+%  \begin{columns}
+%  \column{0.75\textwidth}
+%  \begin{itemize}
+%  \item {\bf Evaluation platforms} from the SoC vendor. Usually
+%    expensive, but many peripherals are built-in. Generally unsuitable
+%    for real products, but best for product development.
+%  \item {\bf System on Module} (SoM) or {\bf Component on Module}, a small
+%    board with only CPU/RAM/flash and a few other core components, with
+%    connectors to access all other peripherals. Can be used to build end
+%    products for small to medium quantities.
+%  \end{itemize}
+%  \column{0.25\textwidth}
+%    \includegraphics[width=\textwidth]{slides/sysdev-intro/stm32mp157c-ev1.png}
+%    \scriptsize
+%    STM32MP157C-EV1 evaluation board\\
+%    \tiny
+%    Image credits (st.com):\\
+%    \url{https://frama.link/NySnaxuV}\\
+%    \vspace{0.5cm}
+%    \includegraphics[width=\textwidth]{slides/sysdev-intro/pocketbeagle.png}
+%    \scriptsize
+%    PocketBeagle\\
+%    \tiny
+%    Image credits (Beagleboard.org):\\
+%    \url{https://beagleboard.org/pocket}
+%  \end{columns}
+%\end{frame}
+%
+%\begin{frame}
+%  \frametitle{Types of hardware platforms (2)}
+%  \begin{columns}
+%  \column{0.75\textwidth}
+%  \begin{itemize}
+%  \item {\bf Community development platforms}, to make a
+%    particular SoC popular and easily available. These are
+%    ready-to-use and low cost, but usually have fewer peripherals than
+%    evaluation platforms. To some extent, can also be used for real
+%    products.
+%  \item {\bf Custom platform}. Schematics for evaluation boards or
+%    development platforms are more and more commonly freely available,
+%    making it easier to develop custom platforms.
+%  \end{itemize}
+%  \column{0.25\textwidth}
+%    \includegraphics[height=0.3\textheight]{../slides/beagleboneblack-board/beagleboneblack.png}
+%    \scriptsize
+%    Beaglebone Black Wireless board\\
+%    \vspace{0.5cm}
+%    \includegraphics[height=0.3\textheight]{slides/sysdev-intro/teres-pcb1-a64.jpg}
+%    \scriptsize
+%    Olimex Open hardware ARM laptop main board\\
+%    \tiny
+%    Image credits (Olimex):\\
+%    \url{https://www.olimex.com/Products/DIY-Laptop/}
+%  \end{columns}
+%\end{frame}
 
 \begin{frame}
   \frametitle{Criteria for choosing the hardware}
@@ -356,15 +356,12 @@
     \begin{itemize}
     \item A BSP contains a bootloader and kernel with the suitable
       device drivers for the targeted hardware
-    \item Purpose of our \href{https://bootlin.com/training/kernel}
-      {\em Kernel Development course}
     \end{itemize}
   \item {\bf System integration}
     \begin{itemize}
     \item Integrate all the components, bootloader, kernel,
       third-party libraries and applications and in-house applications
       into a working system
-    \item Purpose of {\em this} course
     \end{itemize}
   \item {\bf Development of applications}
     \begin{itemize}

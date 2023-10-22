@@ -53,7 +53,17 @@
 \newcommand{\code}[1]{{\codecolor \path{#1}}}
 \newcommand{\codelink}[1]{{\usebeamercolor[fg]{darkblue} \path{#1}}}
 \newcommand{\codewithhash}[1]{{\codecolor \tt{#1}}}
-
+\newcommand\quizframe[3]{
+	\begin{frame}{Quiz - #1}
+		\begin{columns}
+			\column{0.5\textwidth}
+			#2: \url{#3}
+			\column{0.5\textwidth}
+			\includegraphics[width=\textwidth]{common/quiz.pdf}\\
+			{\tiny Image source (OpenClipArt): \url{https://frama.link/30o8NQoA}}
+		\end{columns}
+	\end{frame}
+}
 \usepackage{listings}
 \usepackage{environ}
 \usepackage{minted}

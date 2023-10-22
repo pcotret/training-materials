@@ -154,115 +154,115 @@ a cross-compiling toolchain
   \end{itemize}
 \end{itemize}
 \end{frame}
-
-\begin{frame}[fragile]{Crosstool-NG: download}
-  \begin{itemize}
-  \item Getting Crosstool-NG
-\begin{verbatim}
-$ git clone https://github.com/crosstool-ng/crosstool-ng.git
-\end{verbatim}
-  \item Using a well-known stable version
-\begin{verbatim}
-$ cd crosstool-ng
-$ git checkout crosstool-ng-1.25.0
-\end{verbatim}
-  \item As we're fetching from Git, the \code{configure} script needs
-    to be generated:
-\begin{verbatim}
-$ ./bootstrap
-\end{verbatim}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Crosstool-NG: installation}
-  \begin{itemize}
-  \item Installation can be done:
-    \begin{itemize}
-    \item system-wide, for example in \code{/usr/local}, the
-      \code{ct-ng} command is then available globally
-\begin{verbatim}
-$ ./configure
-$ make
-$ make install
-\end{verbatim}
-    \item or just locally in the source directory, the \code{ct-ng}
-      command will be invoked from this directory
-\begin{verbatim}
-$ ./configure --enable-local
-$ make
-\end{verbatim}
-    \end{itemize}
-  \item In our labs, we will use the second method
-  \item Note: the \code{make} invocation doesn't build any toolchain,
-    it builds the \code{ct-ng} executable.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Crosstool-NG: toolchain configuration}
-  \begin{itemize}
-  \item Once installed, the \code{ct-ng} tool allows to configure and
-    build an arbitrary number of toolchains
-  \item Its configuration system is based on {\em kconfig}, like the
-    Linux kernel configuration system
-  \item Configuration of the toolchain to build stored in a
-    \code{.config} file
-  \item Example configurations provided with Crosstool-NG
-    \begin{itemize}
-    \item List: \code{./ct-ng list-samples}
-    \item Load an example: \code{./ct-ng <sample-name>}, replaces \code{.config}
-    \item For example \code{./ct-ng aarch64-unknown-linux-gnu}
-    \item No sample loaded
-      $\rightarrow$ default Crosstool-NG configuration is a bare-metal
-      toolchain for the {\em Alpha} CPU architecture!
-    \end{itemize}
-  \item The configuration can then be refined using either:
-    \begin{itemize}
-    \item \code{./ct-ng menuconfig}
-    \item \code{./ct-ng nconfig}
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Crosstool-NG: toolchain configuration}
-  \begin{center}
-    \includegraphics[height=0.7\textheight]{slides/sysdev-toolchains-obtaining/ct-ng-menu.png}
-    \vspace{0.1cm}\\
-    \code{./ct-ng menuconfig}
-  \end{center}
-\end{frame}
-
-\begin{frame}[fragile]{Crosstool-NG: toolchain building}
-  \begin{itemize}
-  \item To build the toolchain
-\begin{verbatim}
-./ct-ng build
-\end{verbatim}
-    This will automatically download all the needed dependencies, and
-    build all toolchain components in the right order, with the
-    specified configuration.
-  \item By default the results go in
-    \code{$HOME/x-tools/<architecture-tuple>}, as defined by the
-    option \code{CT_PREFIX_DIR} in {\em Paths and misc options}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Important toolchain contents}
-  \begin{itemize}
-  \item \code{bin/}: cross compilation tool binaries
-    \begin{itemize}
-    \item This directory can be added to your \code{PATH} to ease
-      usage of the toolchain
-    \item Sometimes with symlinks for shorter names
-\begin{verbatim}
-arm-linux-gcc -> arm-cortexa7-linux-uclibcgnueabihf-gcc
-\end{verbatim}
-    \end{itemize}
-  \item \code{<arch-tuple>/sysroot}: {\em sysroot} directory
-    \begin{itemize}
-    \item \code{<arch-tuple>/sysroot/lib}: C library, GCC runtime, C++
-      standard library compiled for the target
-    \item \code{<arch-tuple>/sysroot/usr/include}: C library headers
-      and kernel headers
-    \end{itemize}
-  \end{itemize}
-\end{frame}
+%
+%\begin{frame}[fragile]{Crosstool-NG: download}
+%  \begin{itemize}
+%  \item Getting Crosstool-NG
+%\begin{verbatim}
+%$ git clone https://github.com/crosstool-ng/crosstool-ng.git
+%\end{verbatim}
+%  \item Using a well-known stable version
+%\begin{verbatim}
+%$ cd crosstool-ng
+%$ git checkout crosstool-ng-1.25.0
+%\end{verbatim}
+%  \item As we're fetching from Git, the \code{configure} script needs
+%    to be generated:
+%\begin{verbatim}
+%$ ./bootstrap
+%\end{verbatim}
+%  \end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Crosstool-NG: installation}
+%  \begin{itemize}
+%  \item Installation can be done:
+%    \begin{itemize}
+%    \item system-wide, for example in \code{/usr/local}, the
+%      \code{ct-ng} command is then available globally
+%\begin{verbatim}
+%$ ./configure
+%$ make
+%$ make install
+%\end{verbatim}
+%    \item or just locally in the source directory, the \code{ct-ng}
+%      command will be invoked from this directory
+%\begin{verbatim}
+%$ ./configure --enable-local
+%$ make
+%\end{verbatim}
+%    \end{itemize}
+%  \item In our labs, we will use the second method
+%  \item Note: the \code{make} invocation doesn't build any toolchain,
+%    it builds the \code{ct-ng} executable.
+%  \end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Crosstool-NG: toolchain configuration}
+%  \begin{itemize}
+%  \item Once installed, the \code{ct-ng} tool allows to configure and
+%    build an arbitrary number of toolchains
+%  \item Its configuration system is based on {\em kconfig}, like the
+%    Linux kernel configuration system
+%  \item Configuration of the toolchain to build stored in a
+%    \code{.config} file
+%  \item Example configurations provided with Crosstool-NG
+%    \begin{itemize}
+%    \item List: \code{./ct-ng list-samples}
+%    \item Load an example: \code{./ct-ng <sample-name>}, replaces \code{.config}
+%    \item For example \code{./ct-ng aarch64-unknown-linux-gnu}
+%    \item No sample loaded
+%      $\rightarrow$ default Crosstool-NG configuration is a bare-metal
+%      toolchain for the {\em Alpha} CPU architecture!
+%    \end{itemize}
+%  \item The configuration can then be refined using either:
+%    \begin{itemize}
+%    \item \code{./ct-ng menuconfig}
+%    \item \code{./ct-ng nconfig}
+%    \end{itemize}
+%  \end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Crosstool-NG: toolchain configuration}
+%  \begin{center}
+%    \includegraphics[height=0.7\textheight]{slides/sysdev-toolchains-obtaining/ct-ng-menu.png}
+%    \vspace{0.1cm}\\
+%    \code{./ct-ng menuconfig}
+%  \end{center}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Crosstool-NG: toolchain building}
+%  \begin{itemize}
+%  \item To build the toolchain
+%\begin{verbatim}
+%./ct-ng build
+%\end{verbatim}
+%    This will automatically download all the needed dependencies, and
+%    build all toolchain components in the right order, with the
+%    specified configuration.
+%  \item By default the results go in
+%    \code{$HOME/x-tools/<architecture-tuple>}, as defined by the
+%    option \code{CT_PREFIX_DIR} in {\em Paths and misc options}
+%  \end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Important toolchain contents}
+%  \begin{itemize}
+%  \item \code{bin/}: cross compilation tool binaries
+%    \begin{itemize}
+%    \item This directory can be added to your \code{PATH} to ease
+%      usage of the toolchain
+%    \item Sometimes with symlinks for shorter names
+%\begin{verbatim}
+%arm-linux-gcc -> arm-cortexa7-linux-uclibcgnueabihf-gcc
+%\end{verbatim}
+%    \end{itemize}
+%  \item \code{<arch-tuple>/sysroot}: {\em sysroot} directory
+%    \begin{itemize}
+%    \item \code{<arch-tuple>/sysroot/lib}: C library, GCC runtime, C++
+%      standard library compiled for the target
+%    \item \code{<arch-tuple>/sysroot/usr/include}: C library headers
+%      and kernel headers
+%    \end{itemize}
+%  \end{itemize}
+%\end{frame}
