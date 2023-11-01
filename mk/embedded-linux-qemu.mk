@@ -48,14 +48,6 @@ EMBEDDED_LINUX_QEMU_SLIDES = \
 
 EMBEDDED_LINUX_QEMU_LABS   = \
                 setup \
-                sysdev-toolchain \
                 sysdev-u-boot-qemu \
                 sysdev-kernel-fetch-sources \
-                sysdev-kernel-cross-compiling \
-                sysdev-tinysystem \
-                sysdev-accessing-hardware-qemu \
-                sysdev-block-filesystems-qemu \
-                sysdev-thirdparty-qemu \
-                sysdev-buildroot-qemu \
-		sysdev-application-development-qemu \
-		sysdev-application-debugging-qemu \
+                sysdev-kernel-cross-compiling
